@@ -1,7 +1,9 @@
 {
-  "name": "nama-project-mu",           // harus sama persis dengan nama project di dashboard Cloudflare Workers & Pages
-  "compatibility_date": "2026-01-12",   // atau tanggal terbaru yang kamu mau
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "arema",                          // ← GANTI ini jadi nama EXACT project di dashboard Cloudflare (biasanya slug seperti "arema" atau "arema-abc123" – cek di Overview project)
+  "compatibility_date": "2026-01-12",
   "assets": {
-    "directory": "./dist"               // ← ganti ini sesuai folder hasil build-mu
+    "directory": "./",                      // ← Pakai root repo karena index.html ada di sini (bukan di dist)
+    "not_found_handling": "single-page-application"   // Opsional: kalau nanti tambah routing client-side / SPA, ini berguna
   }
 }
