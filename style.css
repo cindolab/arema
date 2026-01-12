@@ -1,71 +1,1339 @@
-body {
-    font-family: Arial, sans-serif;
+/* General Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    box-sizing: border-box;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-    background-color: #003366; /* Biru Arema */
-    color: white;
-    text-align: center;
-    padding: 20px;
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* Updated Color Variables to Match Coinbase Blue */
+:root {
+    --hocindo-blue: #0052FF; /* Replaced green with Coinbase blue */
+    --hocindo-blue-dark: #0033A0; /* Darker Coinbase blue for gradient */
+    --hocindo-gold: #D4AF37; /* Unchanged gold */
+    --hocindo-gold-dark: #b8860b; /* Unchanged darker gold */
+    --white: #ffffff;
+    --dark-gray: #333333;
+    --light-gray: #f4f4f4;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --transition-duration: 0.3s;
+    --border-radius: 8px;
+    --container-max-width: 1280px;
+    --font-size-base: 16px;
+    --font-size-heading: 2.5rem;
+
+    /* Dark Mode Colors */
+    --bg-dark: #1a1a1a;
+    --text-dark: #e0e0e0;
+    --hocindo-blue-dark-mode: #3366FF; /* Adjusted Coinbase blue for dark mode */
+    --hocindo-gold-dark-mode: #e6b800; /* Unchanged gold for dark mode */
 }
 
-section {
-    margin: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+@media (prefers-color-scheme: dark) {
+    :root {
+        --white: var(--bg-dark);
+        --dark-gray: var(--text-dark);
+        --hocindo-blue: var(--hocindo-blue-dark-mode); /* Adjusted for dark mode */
+        --hocindo-gold: var(--hocindo-gold-dark-mode);
+        --light-gray: #2a2a2a;
+    }
 }
 
-h2 {
-    color: #006600; /* Hijau lapangan */
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
 }
 
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    padding: 12px 20px;
+    z-index: 10000;
+    font-weight: 500;
+    text-decoration: none;
+    transition: top var(--transition-duration) ease;
 }
 
-table {
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--hocindo-gold);
+    outline-offset: 2px;
+}
+
+/* Container */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 24px;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+/* Welcome Banner Styles */
+.welcome-banner {
+    display: none;
+    position: sticky;
+    top: 80px;
+    width: 100%;
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    z-index: 900;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
+    will-change: opacity, transform;
 }
 
-th {
-    background-color: #003366;
-    color: white;
+.welcome-banner.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-button {
-    background-color: #006600;
-    color: white;
+.welcome-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.welcome-icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 20px;
+    object-fit: contain;
+    transition: transform var(--transition-duration) ease;
+}
+
+.welcome-icon:hover {
+    transform: rotate(10deg);
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.welcome-banner-content h2 {
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.welcome-banner-content p {
+    font-size: clamp(14px, 3vw, 16px);
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+.typing-effect {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--hocindo-gold);
+    animation: typing 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    will-change: width, border-color;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--hocindo-gold); }
+}
+
+.personalize-form {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.personalize-form input {
+    padding: 10px 12px;
+    border: 1px solid var(--hocindo-gold);
+    border-radius: var(--border-radius);
+    font-size: clamp(14px, 2.5vw, 15px);
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.personalize-form input:focus {
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    outline: none;
+}
+
+.personalize-form button {
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-size: clamp(14px, 2.5vw, 15px);
+    font-weight: 500;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
 }
 
-button:hover {
-    background-color: #004d00;
+.personalize-form button:hover,
+.personalize-form button:focus {
+    background: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    outline: none;
 }
 
-footer {
-    background-color: #003366;
-    color: white;
-    text-align: center;
-    padding: 10px;
+.welcome-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcome-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color var(--transition-duration), transform var(--transition-duration);
+}
+
+.welcome-close:hover,
+.welcome-close:focus {
+    color: var(--hocindo-gold);
+    transform: scale(1.15);
+    outline: none;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
     position: fixed;
     width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 16px 0;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    will-change: transform;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    height: 60px;
+    object-fit: contain;
+    transition: transform var(--transition-duration);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.nav-menu ul li {
+    position: relative;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-size: clamp(15px, 2.5vw, 16px);
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color var(--transition-duration), background var(--transition-duration);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--hocindo-gold);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    outline: none;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
     bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--hocindo-gold);
+    transition: width var(--transition-duration) ease, left var(--transition-duration) ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Hamburger menu styles unchanged */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--white);
+    transition: all var(--transition-duration) ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.6) 0%, rgba(0, 51, 160, 0.4) 100%), url('new-hero-bg.webp') no-repeat center center/cover; /* Changed to Coinbase blue gradient */
+    background-attachment: fixed;
+    color: var(--white);
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    background: rgba(0, 82, 255, 0.75); /* Changed to Coinbase blue */
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(5px);
+    max-width: clamp(300px, 80vw, 700px);
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.hero .highlight {
+    color: var(--hocindo-gold);
+    position: relative;
+}
+
+.hero .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--hocindo-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-duration) ease;
+}
+
+.hero .highlight:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.hero p {
+    font-size: clamp(16px, 3vw, 18px);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.dynamic-subtitle {
+    font-size: clamp(20px, 4vw, 24px);
+    margin-bottom: 24px;
+    font-weight: 300;
+}
+
+.subtitle-text {
+    color: var(--hocindo-gold);
+}
+
+.cta-button {
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    padding: 16px 32px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    background: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+    outline: none;
+}
+
+/* About Section */
+.about {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--light-gray);
+}
+
+.about h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    position: relative;
+}
+
+.about h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: clamp(16px, 2.5vw, 18px);
+    line-height: 1.7;
+    color: var(--dark-gray);
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform var(--transition-duration);
+}
+
+.about-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Services Section */
+.services {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--white);
+}
+
+.services h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+}
+
+.services h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.service-card {
+    background: var(--light-gray);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.service-card i {
+    font-size: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    margin-bottom: 24px;
+    transition: transform var(--transition-duration);
+}
+
+.service-card:hover i {
+    transform: scale(1.1);
+}
+
+.service-card h3 {
+    font-size: clamp(20px, 3vw, 24px);
+    margin-bottom: 12px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+}
+
+.service-card p {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+.service-card[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--light-gray);
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+}
+
+.testimonials h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.testimonial-card p {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--dark-gray);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.testimonial-card h4 {
+    font-size: clamp(16px, 2.5vw, 18px);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    font-weight: 500;
+}
+
+/* Gallery Section */
+.gallery {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--white);
+}
+
+.gallery h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+}
+
+.gallery h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-duration) ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 82, 255, 0.8); /* Changed to Coinbase blue */
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-duration) ease;
+    backdrop-filter: blur(3px);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Investment Section */
+.investment {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.6) 0%, rgba(0, 51, 160, 0.4) 100%), url('investment-bg.webp') no-repeat center center/cover; /* Changed to Coinbase blue gradient */
+    background-attachment: fixed;
+    color: var(--white);
+}
+
+.investment h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-gold);
+}
+
+.investment h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+.investment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.asset-display {
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.asset-display:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.asset-display h3 {
+    font-size: clamp(20px, 3vw, 24px);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    text-align: center;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.asset-item {
+    text-align: center;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.85);
+    transition: transform var(--transition-duration), background var(--transition-duration);
+    position: relative;
+}
+
+.asset-item:hover {
+    transform: scale(1.08);
+    background: rgba(0, 82, 255, 0.15); /* Changed to Coinbase blue */
+}
+
+.asset-item[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.asset-item i {
+    font-size: 32px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    margin-bottom: 12px;
+}
+
+.asset-item h4 {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.asset-item p {
+    font-size: clamp(16px, 2.5vw, 18px);
+    font-weight: bold;
+    color: var(--hocindo-gold);
+}
+
+.investment-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid rgba(0, 82, 255, 0.25); /* Changed to Coinbase blue */
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.85);
+    transition: transform var(--transition-duration), background var(--transition-duration);
+    position: relative;
+}
+
+.stat-item:hover {
+    transform: scale(1.08);
+    background: rgba(0, 82, 255, 0.15); /* Changed to Coinbase blue */
+}
+
+.stat-item[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.stat-item i {
+    font-size: 32px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    margin-bottom: 12px;
+}
+
+.stat-item h3 {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.stat-item p {
+    font-size: clamp(16px, 2.5vw, 18px);
+    font-weight: bold;
+    color: var(--hocindo-gold);
+}
+
+/* Contact Section */
+.contact {
+    padding: clamp(60px, 10vw, 100px) 0;
+    background: var(--light-gray);
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: var(--font-size-heading);
+    margin-bottom: 48px;
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
+}
+
+.contact h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--hocindo-gold);
+    margin: 12px auto 0;
+}
+
+#contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 16px;
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
+    border-radius: var(--border-radius);
+    font-size: clamp(15px, 2.5vw, 16px);
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    outline: none;
+}
+
+#contact-form button {
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    padding: 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+#contact-form button:hover,
+#contact-form button:focus {
+    background: var(--hocindo-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+    outline: none;
+}
+
+/* Chatbot */
+.chatbot-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 28px;
+    transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.chatbot-button:hover,
+.chatbot-button:focus {
+    transform: scale(1.15);
+    box-shadow: 0 6px 16px var(--shadow-color);
+    outline: none;
+}
+
+.chatbot-button[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.chatbot {
+    position: fixed;
+    bottom: 96px;
+    right: 24px;
+    width: clamp(280px, 90%, 360px);
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 20px var(--shadow-color);
+    display: none;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
+}
+
+.chatbot.active {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chatbot-header {
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    padding: 12px 16px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+}
+
+.chatbot-body {
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--light-gray);
+}
+
+.bot-message,
+.user-message {
+    margin: 12px 0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: clamp(14px, 2.5vw, 15px);
+    line-height: 1.5;
+}
+
+.bot-message {
+    background: var(--white);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.user-message {
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
+    color: var(--white);
+    text-align: right;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.chatbot-footer {
+    padding: 12px 16px;
+    display: flex;
+    gap: 12px;
+    background: var(--white);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
+    border-radius: var(--border-radius);
+    font-size: clamp(14px, 2.5vw, 15px);
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+#chatbot-input:focus {
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    outline: none;
+}
+
+.chatbot-footer button {
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    border: none;
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    font-size: clamp(14px, 2.5vw, 15px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+.chatbot-footer button:hover,
+.chatbot-footer button:focus {
+    background: var(--hocindo-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    outline: none;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    padding: clamp(40px, 8vw, 60px) 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-info h3 {
+    font-size: clamp(20px, 3vw, 24px);
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: var(--white);
+    font-size: 28px;
+    transition: color var(--transition-duration), transform var(--transition-duration);
+}
+
+.footer-social a:hover,
+.footer-social a:focus {
+    color: var(--hocindo-gold);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.disclaimer {
+    margin-top: 24px;
+    font-size: clamp(13px, 2.5vw, 14px);
+    line-height: 1.7;
+}
+
+.disclaimer h3 {
+    font-size: clamp(16px, 2.5vw, 18px);
+    margin-bottom: 12px;
+}
+
+.disclaimer a {
+    color: var(--hocindo-gold);
+    text-decoration: none;
+    transition: color var(--transition-duration);
+}
+
+.disclaimer a:hover,
+.disclaimer a:focus {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+footer p {
+    text-align: center;
+    margin-top: 32px;
+    font-size: clamp(13px, 2.5vw, 14px);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity var(--transition-duration) ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 6px 20px var(--shadow-color);
+    transform: scale(0.85);
+    transition: transform var(--transition-duration) ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+#investment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+#investment-form input,
+#investment-form select {
+    padding: 16px;
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
+    border-radius: var(--border-radius);
+    font-size: clamp(15px, 2.5vw, 16px);
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+#investment-form input:focus,
+#investment-form select:focus {
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    outline: none;
+}
+
+#investment-form button {
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+    color: var(--white);
+    padding: 16px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition-duration), transform var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+#investment-form button:hover,
+#investment-form button:focus {
+    background: var(--hocindo-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+    outline: none;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--dark-gray);
+    transition: color var(--transition-duration);
+}
+
+.close:hover,
+.close:focus {
+    color: var(--hocindo-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .asset-grid,
+    .investment-stats {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .welcome-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .welcome-banner-content h2 {
+        font-size: clamp(18px, 4vw, 22px);
+    }
+
+    .welcome-banner-content p {
+        font-size: clamp(13px, 3vw, 14px);
+    }
+
+    .personalize-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .personalize-form input,
+    .personalize-form button {
+        width: 100%;
+    }
+
+    .welcome-actions {
+        margin-top: 16px;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
+    }
+
+    .nav-menu.active {
+        display: block;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+    }
+
+    .nav-menu ul li {
+        margin: 8px 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        background-attachment: scroll;
+        padding-top: 100px;
+    }
+
+    .hero h1 {
+        font-size: clamp(24px, 5vw, 36px);
+    }
+
+    .hero p {
+        font-size: clamp(14px, 3vw, 16px);
+    }
+
+    .dynamic-subtitle {
+        font-size: clamp(16px, 4vw, 20px);
+    }
+
+    .investment {
+        background-attachment: scroll;
+    }
+
+    .chatbot {
+        width: 90%;
+        right: 5%;
+        bottom: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero-content {
+        padding: 24px;
+    }
+
+    .services-grid,
+    .testimonials-grid,
+    .gallery-grid,
+    .investment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .asset-grid,
+    .investment-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
 }
