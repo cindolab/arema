@@ -3,81 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SSB arema.eth - Akademi sepak bola muda terinspirasi Arema FC, dengan integrasi blockchain ENS untuk transparansi.">
+    <meta name="description" content="SSB arema.eth - Akademi sepak bola muda terinspirasi Arema FC dengan transparansi blockchain.">
     <title>SSB arema.eth - Akademi Sepak Bola Muda</title>
     
-    <!-- Google Fonts (opsional, bisa dihapus kalau mau lebih ringan) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Link ke CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        header {
-            background: linear-gradient(to right, #003366, #cc0000); /* Warna biru-merah Arema FC */
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        section {
-            margin-bottom: 2.5rem;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #003366;
-            border-bottom: 3px solid #cc0000;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        .highlight {
-            font-weight: bold;
-            color: #cc0000;
-        }
-        .footer-info {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #555;
-            margin-top: 3rem;
-            padding: 1rem;
-            border-top: 1px solid #ddd;
-        }
-        .proof-link {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .proof-link:hover {
-            text-decoration: underline;
-        }
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .container { padding: 1rem; }
-        }
-    </style>
+    <!-- Google Fonts (opsional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -86,57 +19,61 @@
         <p>Sekolah Sepak Bola Muda Terinspirasi Arema FC</p>
     </header>
 
-    <div class="container">
-        <section>
+    <main class="container">
+        <section class="about">
             <h2>Tentang Kami</h2>
             <p>SSB arema.eth adalah akademi sepak bola yang terinspirasi dari klub legendaris <span class="highlight">Arema FC</span> di Malang, Indonesia.</p>
             <p>Didirikan pada <strong>12 Januari 2026</strong>, SSB arema.eth bertujuan membina talenta muda sepak bola usia 6-18 tahun dengan pendekatan modern.</p>
         </section>
 
-        <section>
+        <section class="vision">
             <h2>Visi & Integrasi Teknologi</h2>
             <p>Kami mengintegrasikan teknologi blockchain melalui domain ENS <strong>arema.eth</strong> untuk:</p>
-            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+            <ul>
                 <li>Transparansi keuangan</li>
                 <li>Membership NFT (sebagai bukti keanggotaan)</li>
                 <li>Pengelolaan aset digital</li>
             </ul>
-            <p>Ini memastikan semua transaksi terlacak secara publik di Ethereum network, mencegah korupsi dan meningkatkan kepercayaan sponsor serta orang tua.</p>
+            <p>Semua transaksi terlacak secara publik di Ethereum network, mencegah korupsi dan meningkatkan kepercayaan sponsor serta orang tua.</p>
         </section>
 
-        <section>
+        <section class="background">
             <h2>Latar Belakang Proyek</h2>
             <p>Proyek ini dimulai sebagai aset <strong>Cindo Lab</strong> untuk membangun pondasi SSB, dengan <strong>arema.eth</strong> sebagai identitas digital utama.</p>
         </section>
 
-        <section>
-            <h2>Informasi Kontak & Bukti</h2>
+        <!-- Galeri Dokumentasi Aktivitas Lapangan -->
+        <section class="gallery">
+            <h2>Dokumentasi Aktivitas di Lapangan</h2>
+            <p class="gallery-intro">Beberapa momen latihan dan kegiatan anak-anak di lapangan (foto dokumentasi awal 2026):</p>
+            <div class="gallery-grid">
+                <!-- Ganti src dengan URL gambar asli kalau kamu upload ke repo atau hosting seperti imgur/R2 -->
+                <img src="https://www.persebaya.id/uploads/post/2025/10/17/JYT_1890.jpg" alt="Anak-anak latihan sepak bola di lapangan hijau" loading="lazy">
+                <img src="https://img.inews.co.id/media/600/files/networks/2025/12/20/5ebc8_ssb.jfif" alt="Latihan SSB muda dengan fokus karakter" loading="lazy">
+                <img src="http://kbanews.com/wp-content/uploads/2025/08/OneDream-Football-Academy-1.jpeg" alt="Akademi sepak bola anak Indonesia sedang berlatih" loading="lazy">
+                <img src="https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/radarjember/2021/09/FTA-Akhirnya-SSB-Mulai-Latihan-Lagi-1-.jpg" alt="Siswa SSB mulai latihan di lapangan" loading="lazy">
+                <img src="https://image.idntimes.com/post/20210913/utamasia-5-57a2a05951576a63f1995c172bdc7473.JPG" alt="Momen latihan sepak bola grassroots anak muda" loading="lazy">
+                <img src="https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p1/857/2025/07/07/FotoJet-18-3145424135.jpg" alt="Anak usia dini berlatih teknik dasar sepak bola" loading="lazy">
+            </div>
+        </section>
+
+        <section class="info">
+            <h2>Informasi Tambahan</h2>
             <p><strong>Ditulis pada:</strong> 12 Januari 2026</p>
             <p><strong>Lokasi:</strong> Bandar Kedung Mulyo - Jombang, Jawa Timur - Indonesia</p>
             <p>Bukti kerja sebagai aset CindoLab: 
-                <a href="https://etherscan.io/tx/0xc5f9bbed53002c1218516717ffee6295f0c97f1bfeb0988f724d361ffc080b5f" 
-                   target="_blank" class="proof-link">
-                   Lihat Transaksi di Etherscan
+                <a href="https://etherscan.io/tx/0xfda2b1a1110d5cde73ac37278e9bd3cd8290020156eae628e8d24ed1b85d2db2" target="_blank" class="proof-link">
+                    Lihat Transaksi di Etherscan
                 </a>
             </p>
         </section>
-    </div>
+    </main>
 
-    <div class="footer-info">
+    <footer>
         <p>© 2026 SSB arema.eth | Terinspirasi Arema FC | Dibangun dengan transparansi blockchain</p>
-    </div>
+    </footer>
 
-    <script>
-        // JS sederhana: smooth scroll ke section kalau ada link anchor (opsional)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
+    <!-- Link ke JS eksternal -->
+    <script src="script.js"></script>
 </body>
 </html>
