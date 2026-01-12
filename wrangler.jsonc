@@ -1,0 +1,7 @@
+{
+  "name": "nama-project-mu",           // harus sama persis dengan nama project di dashboard Cloudflare Workers & Pages
+  "compatibility_date": "2026-01-12",   // atau tanggal terbaru yang kamu mau
+  "assets": {
+    "directory": "./dist"               // ← ganti ini sesuai folder hasil build-mu
+  }
+}
