@@ -1,10 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "arema",  // PASTIKAN exact match nama Worker di dashboard (cek di https://dash.cloudflare.com → Workers & Pages → Overview)
+  "name": "arema",  // Harus exact match nama Worker di dashboard Cloudflare (cek di https://dash.cloudflare.com → Workers & Pages → arema → Overview). Kalau beda, ganti jadi yang benar (misal "arema-xyz123").
   "compatibility_date": "2026-01-12",
   "assets": {
-    "directory": "./",                 // root repo, cocok karena style.css & script.js di sini
-    "binding": "ASSETS",               // tambahkan ini (wajib untuk binding, meski tidak pakai script)
-    "not_found_handling": "single-page-application"  // bagus kalau ada routing JS
+    "directory": "./",  // Root repo → serve semua file di sini (index.html, style.css, script.js)
+    "binding": "ASSETS",  // Wajib untuk static assets binding
+    "not_found_handling": "single-page-application"  // Fallback ke index.html untuk path non-file (bagus kalau ada JS routing nanti)
   }
 }
