@@ -3,374 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CindoLab - Hotel kreatif dengan penginapan, bisnis, dan peluang investasi saham berbasis bitcoin di Indonesia.">
-    <meta name="keywords" content="hotel, investasi, bitcoin, smart contract, CindoLab, penginapan, cindo.eth, arema">
-    <meta property="og:title" content="CindoLab - Arema">
-    <meta property="og:description" content="Hotel Kreatif, Pertemuan Bisnis Dan Investasi Saham Berbasis Bitcoin">
-    <meta property="og:image" content="https://r2.primal.net/cache/a/00/f2/a00f2a4d3a98f4b0ffeb110d95cefe2e5457ab0000014dc2f63e6a454a8a8533.jpg">
-    <meta property="og:url" content="https://arema.cindo.workers.dev/">
-    <title>CindoLab - Arema</title>
+    <meta name="description" content="SSB arema.eth - Akademi sepak bola muda terinspirasi Arema FC, dengan integrasi blockchain ENS untuk transparansi.">
+    <title>SSB arema.eth - Akademi Sepak Bola Muda</title>
     
-    <!-- Preload assets for performance -->
-    <link rel="preload" href="/style.css" as="style">
-    <link rel="preload" href="/script.js" as="script">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts (opsional, bisa dihapus kalau mau lebih ringan) -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Favicon -->
-    <link rel="icon" href="/cindo.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="/cindo.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/cindo.png">
-    
-    <!-- Inline style fallback for text visibility -->
     <style>
-        body { color: #333; background: #fff; font-family: 'Roboto', sans-serif; } /* Fallback kalau CSS gagal */
-        .hero-content h1, .subtitle-text, p { color: #fff; } /* Adjust untuk hero (white text on dark bg) */
-        .dark-mode { background: #121212; color: #fff; } /* Support dark mode */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        header {
+            background: linear-gradient(to right, #003366, #cc0000); /* Warna biru-merah Arema FC */
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        section {
+            margin-bottom: 2.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 3px solid #cc0000;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #cc0000;
+        }
+        .footer-info {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 3rem;
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        .proof-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .proof-link:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .container { padding: 1rem; }
+        }
     </style>
 </head>
-<body class="light-mode"> <!-- Ganti ke dark-mode via JS kalau ada toggle -->
+<body>
 
-    <!-- Skip to Objectives Link -->
-    <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
-
-    <!-- Welcome Banner -->
-    <div id="welcome-banner" class="welcome-banner" role="alert" aria-labelledby="welcome-title">
-        <div class="welcome-banner-content">
-            <img src="welcome-icon.png" alt="Ikon Selamat Datang" class="welcome-icon" onerror="this.src='https://via.placeholder.com/50?text=Welcome';"> <!-- Fallback gambar -->
-            <div class="welcome-text">
-                <h2 id="welcome-title">Selamat Datang di CindoLab!</h2>
-                <p id="welcome-message" class="typing-effect">Tempat ini bisa jadi cerita yang akan kuceritakan kepada anak-anakku kelak — hei, kita sudah ada di sana sejak awal.</p>
-                <form id="personalize-form" class="personalize-form" style="display: none;">
-                    <input type="text" id="visitor-name" placeholder="Masukkan nama Anda (opsional)" aria-label="Nama pengunjung">
-                    <button type="submit">Sapa Saya</button>
-                </form>
-            </div>
-            <div class="welcome-actions">
-                <button class="cta-button" onclick="scrollToSection('investment')">Jelajahi Investasi</button>
-                <button onclick="closeWelcomeBanner()" class="welcome-close" aria-label="Tutup banner selamat datang">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="cindo.svg" alt="Cindo Lab Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/100?text=Logo';"> <!-- Fallback -->
-            </div>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#home" class="nav-link">Beranda</a></li>
-                    <li><a href="#about" class="nav-link">Tentang</a></li>
-                    <li><a href="#services" class="nav-link">Layanan</a></li>
-                    <li><a href="#gallery" class="nav-link">Galeri</a></li>
-                    <li><a href="#investment" class="nav-link">Investasi</a></li>
-                    <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
-                    <li><a href="#contact" class="nav-link">Kontak</a></li>
-                    <li><a href="https://cindolab.github.io/logo2" class="nav-link">Logo</a></li>
-                    <li><a href="https://cindolab.github.io/investor/001" class="nav-link">Investor</a></li>
-                </ul>
-            </nav>
-            <div class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+    <header>
+        <h1>SSB arema.eth</h1>
+        <p>Sekolah Sepak Bola Muda Terinspirasi Arema FC</p>
     </header>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section with Video Background -->
-        <section id="home" class="hero parallax">
-            <video autoplay muted loop class="hero-video">
-                <source src="https://r2a.primal.net/uploads2/1/1a/63/11a6311dc51151bfeafbfa2bc793a32c858fa8ae22faf5da100aad39808e71be.mp4" type="video/mp4">
-                <source src="hero-video.webm" type="video/webm">
-                <img src="hero-fallback.jpg" alt="Gambar latar belakang hotel mewah CindoLab"> <!-- Fallback untuk video -->
-            </video>
-            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                <h1 data-aos="fade-up" data-aos-delay="200" style="color: #fff;">CindoLab</h1> <!-- Inline fallback color -->
-                <p data-aos="fade-up" data-aos-delay="400" style="color: #fff;"><span class="highlight">Hotel Kreatif, Pertemuan Bisnis Dan Investasi</span></p>
-                <div class="dynamic-subtitle" data-aos="fade-up" data-aos-delay="600">
-                    <span class="subtitle-text" style="color: #fff;">Kemewahan</span> <!-- Fallback teks -->
-                </div>
-                <button class="cta-button" onclick="scrollToSection('investment')" data-aos="fade-up" data-aos-delay="800">Jelajahi Investasi</button>
-            </div>
+    <div class="container">
+        <section>
+            <h2>Tentang Kami</h2>
+            <p>SSB arema.eth adalah akademi sepak bola yang terinspirasi dari klub legendaris <span class="highlight">Arema FC</span> di Malang, Indonesia.</p>
+            <p>Didirikan pada <strong>12 Januari 2026</strong>, SSB arema.eth bertujuan membina talenta muda sepak bola usia 6-18 tahun dengan pendekatan modern.</p>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Tentang Kami</h2> <!-- Fallback color -->
-                <div class="about-content">
-                    <div class="about-text" data-aos="fade-right">
-                        <p style="color: #333;">CindoLab adalah hotel kreatif yang menggabungkan pengalaman menginap premium, peluang bisnis strategis, dan <strong>investasi saham berbasis bitcoin</strong> dengan potensi bagi hasil yang menarik melalui smart contract.</p>
-                        <p style="color: #333;"><strong>Visi kami</strong> adalah menghadirkan pengalaman menginap yang tak terlupakan sekaligus mendukung kesuksesan bisnis yang berkelanjutan bagi para mitra dan investor.</p>
-                        <p style="color: #333;"><strong>Misi kami</strong> adalah menyediakan akomodasi yang memadukan kesederhanaan elegan dengan kemewahan modern, mengutamakan kenyamanan tamu, kepuasan pelanggan, dan keuntungan investor.</p>
-                        <p style="color: #333;"><strong>Produk CindoLab</strong>: Layanan hospitalitas kelas dunia dan <strong>investasi saham berbasis bitcoin</strong> yang dirancang untuk memberikan nilai tambah jangka panjang.</p>
-                        <p style="color: #333;">Jelajahi lebih lanjut tentang CindoLab dan peluang investasi kami di <a href="https://cindo.pages.dev/">Cindo Pages Dev</a>.</p>
-                    </div>
-                    <div class="about-image" data-aos="fade-left">
-                        <picture>
-                            <source srcset="https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg" type="image/webp">
-                            <img src="about-image.jpg" alt="Interior hotel mewah CindoLab" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=About';">
-                        </picture>
-                    </div>
-                </div>
-            </div>
+        <section>
+            <h2>Visi & Integrasi Teknologi</h2>
+            <p>Kami mengintegrasikan teknologi blockchain melalui domain ENS <strong>arema.eth</strong> untuk:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>Transparansi keuangan</li>
+                <li>Membership NFT (sebagai bukti keanggotaan)</li>
+                <li>Pengelolaan aset digital</li>
+            </ul>
+            <p>Ini memastikan semua transaksi terlacak secara publik di Ethereum network, mencegah korupsi dan meningkatkan kepercayaan sponsor serta orang tua.</p>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="services">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Layanan Kami</h2>
-                <div class="services-grid">
-                    <div class="service-card" data-aos="fade-up" data-tooltip="Fasilitas premium untuk kenyamanan Anda">
-                        <i class="fas fa-hotel" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Hotel Sederhana dan Mewah</h3>
-                        <p style="color: #333;">Hotel sederhana hingga resor bintang lima dengan fasilitas premium dan pelayanan penuh perhatian.</p>
-                    </div>
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="200" data-tooltip="Momen romantis yang tak terlupakan">
-                        <i class="fas fa-heart" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Pengalaman Cinta</h3>
-                        <p style="color: #333;">Paket romantis, pernikahan impian, dan acara intim untuk momen tak terlupakan.</p>
-                    </div>
-                    <div class="service-card" data-aos="fade-up" data-aos-delay="400" data-tooltip="Keuntungan investasi yang menjanjikan">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Investasi Cerdas</h3>
-                        <p style="color: #333;">Peluang <strong>investasi saham berbasis bitcoin</strong> di properti hotel dan proyek berkelanjutan dengan keuntungan menjanjikan melalui smart contract.</p>
-                    </div>
-                </div>
-            </div>
+        <section>
+            <h2>Latar Belakang Proyek</h2>
+            <p>Proyek ini dimulai sebagai aset <strong>Cindo Lab</strong> untuk membangun pondasi SSB, dengan <strong>arema.eth</strong> sebagai identitas digital utama.</p>
         </section>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Apa Kata Tamu & Investor Kami</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                        <p style="color: #333;">"Pengalaman menginap di Hotel CindoLab luar biasa! Pelayanan yang ramah dan fasilitas mewah."</p>
-                        <h4 style="color: #333;">- Ani, Tamu</h4>
-                    </div>
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
-                        <p style="color: #333;">"Investasi <strong>saham berbasis bitcoin</strong> di CindoLab memberikan hasil yang menjanjikan. Smart contract sangat transparan!"</p>
-                        <h4 style="color: #333;">- Budi, Investor</h4>
-                    </div>
-                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
-                        <p style="color: #333;">"Acara pernikahan kami di CindoLab begitu indah dan tak terlupakan."</p>
-                        <h4 style="color: #333;">- Citra, Pengantin</h4>
-                    </div>
-                </div>
-            </div>
+        <section>
+            <h2>Informasi Kontak & Bukti</h2>
+            <p><strong>Ditulis pada:</strong> 12 Januari 2026</p>
+            <p><strong>Lokasi:</strong> Bandar Kedung Mulyo - Jombang, Jawa Timur - Indonesia</p>
+            <p>Bukti kerja sebagai aset CindoLab: 
+                <a href="https://etherscan.io/tx/0xfda2b1a1110d5cde73ac37278e9bd3cd8290020156eae628e8d24ed1b85d2db2" 
+                   target="_blank" class="proof-link">
+                   Lihat Transaksi di Etherscan
+                </a>
+            </p>
         </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Galeri</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item" data-aos="zoom-in">
-                        <picture>
-                            <source srcset="https://r2.primal.net/cache/a/00/f2/a00f2a4d3a98f4b0ffeb110d95cefe2e5457ab0000014dc2f63e6a454a8a8533.jpg" type="image/webp">
-                            <img src="gallery1.jpg" alt="Kamar hotel mewah CindoLab" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Gallery1';">
-                        </picture>
-                        <div class="gallery-overlay" style="color: #fff;">Hotel Mewah</div>
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                        <picture>
-                            <source srcset="https://r2.primal.net/cache/2/70/fc/270fc7fe5e56adc74c59c021d40e4ea78ca5100149099f545056344b42988b66.jpg" type="image/webp">
-                            <img src="https://r2.primal.net/cache/2/83/ad/283ad9658a456ca0b5512a88ee5388a3dc012cae3a6ab35b822e5a7d50d4095b.jpg" alt="Makan malam romantis di Cindo Lab" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Gallery2';">
-                        </picture>
-                        <div class="gallery-overlay" style="color: #fff;">Makan Malam Romantis</div>
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                        <picture>
-                            <source srcset="https://r2.primal.net/cache/8/00/77/800779796ff7df5ee39260d0155eabb6f4330aefcd139ae8c9fd3dafe22c298d.jpg" type="image/webp">
-                            <img src="https://r2.primal.net/cache/8/00/77/800779796ff7df5ee39260d0155eabb6f4330aefcd139ae8c9fd3dafe22c298d.jpg" alt="Proyek investasi saham berbasis bitcoin Cindo Lab" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Gallery3';">
-                        </picture>
-                        <div class="gallery-overlay" style="color: #fff;">Investasi Bitcoin</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Investment Section -->
-        <section id="investment" class="investment parallax">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Peluang Investasi</h2>
-                <div class="asset-display" data-aos="fade-up">
-                    <h3 style="color: #333;">Ringkasan Keuangan Anda</h3>
-                    <div class="asset-grid">
-                        <div class="asset-item" data-tooltip="Jumlah saldo yang tersedia untuk investasi">
-                            <i class="fas fa-coins" aria-hidden="true"></i>
-                            <h4 style="color: #333;">Saldo yang tersedia</h4>
-                            <p id="asset-value" style="color: #333;">Rp 100.000</p>
-                        </div>
-                        <div class="asset-item" data-tooltip="Total dana yang telah disetor">
-                            <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
-                            <h4 style="color: #333;">Saldo Disetor</h4>
-                            <p id="deposited-balance" style="color: #333;">Rp 500.000</p>
-                        </div>
-                        <div class="asset-item" data-tooltip="Total dana yang telah ditarik">
-                            <i class="fas fa-hand-holding" aria-hidden="true"></i>
-                            <h4 style="color: #333;">Saldo Ditarik</h4>
-                            <p id="withdrawn-balance" style="color: #333;">Rp 10.000</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="investment-stats" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200" data-tooltip="Jumlah investor aktif saat ini">
-                        <i class="fas fa-users" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Investor Aktif</h3>
-                        <p id="investor-count" style="color: #333;">5</p>
-                    </div>
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300" data-tooltip="Total dana yang dikelola">
-                        <i class="fas fa-wallet" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Dana Kelolaan</h3>
-                        <p id="managed-funds" style="color: #333;">Rp 35.834,68</p>
-                    </div>
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400" data-tooltip="Pertumbuhan dana investasi">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Pertumbuhan Dana</h3>
-                        <p id="funds-growth" style="color: #333;">Rp 936,44</p>
-                    </div>
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="500" data-tooltip="Keuntungan dari bagi hasil">
-                        <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Bagi Hasil Investasi</h3>
-                        <p id="profit-share" style="color: #333;">Rp 100</p>
-                    </div>
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="600" data-tooltip="Jumlah manajer investasi">
-                        <i class="fas fa-user-tie" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Manajer Investasi</h3>
-                        <p id="manager-count" style="color: #333;">2</p>
-                    </div>
-                    <div class="stat-item" data-aos="fade-up" data-aos-delay="700" data-tooltip="Jumlah instrumen investasi">
-                        <i class="fas fa-briefcase" aria-hidden="true"></i>
-                        <h3 style="color: #333;">Instrumen Investasi</h3>
-                        <p id="instrument-count" style="color: #333;">5 Simbol</p>
-                    </div>
-                </div>
-                <div id="investment-data" class="investment-grid"></div>
-                <button class="cta-button" onclick="openModal()" data-aos="fade-up">Daftar Investasi</button>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2 data-aos="fade-up" style="color: #333;">Hubungi Kami</h2>
-                <form id="contact-form" data-aos="fade-up" data-aos-delay="200">
-                    <input type="text" name="name" placeholder="Nama Lengkap" required aria-required="true">
-                    <input type="email" name="email" placeholder="Email" required aria-required="true">
-                    <textarea name="message" placeholder="Pesan Anda" required aria-required="true"></textarea>
-                    <button type="submit">Kirim Pesan</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Chatbot Button and Window -->
-    <div class="chatbot-button" onclick="toggleChatbot()" data-tooltip="Chat dengan kami!">
-        <i class="fas fa-comment-dots" aria-hidden="true"></i>
-    </div>
-    <div id="chatbot" class="chatbot">
-        <div class="chatbot-header">
-            <h3 style="color: #333;">Chat dengan CindoLab Bot</h3>
-            <span class="chatbot-close" onclick="toggleChatbot()">x</span>
-        </div>
-        <div class="chatbot-body" id="chatbot-messages" aria-live="polite">
-            <div class="bot-message" style="color: #333;">Selamat datang! Saya CindoLab Bot. Tanya saya tentang hotel atau investasi saham berbasis bitcoin!</div>
-        </div>
-        <div class="chatbot-footer">
-            <input type="text" id="chatbot-input" placeholder="Ketik pesan Anda..." aria-label="Input pesan chatbot">
-            <button onclick="sendMessage()">Kirim</button>
-        </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <div class="service-card" data-aos="fade-up">
-                        <i class="fas fa-hotel"></i>
-                        <h3 style="color: #333;">Kantor Pusat CindoLab</h3>
-                        <p style="color: #333;">Jl. Panglima Sudirman No. 19, Bandarkedungmulyo - Jombang, Jawa Timur - Indonesia</p>
-                        <p style="color: #333;">Email: ringinbambu@gmail.com | WA: +62 8999 587 888</p>
-                        <p style="color: #333;">Address Bitcoin <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" target="_blank">1CinDo...w3Q8</a></p>
-                        <p style="color: #333;">Address TON <a href="https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW" target="_blank">UQAleo...TRwW</a></p> 
-                        <p style="color: #333;">Address Ethereum <a href="https://etherscan.io/address/0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868" target="_blank">cindo.eth</a></p>
-                        <p style="color: #333;">Address Solana <a href="https://solscan.io/account/cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw" target="_blank">cvS1...CKw</a></p>
-                    </div>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/cindolabot/" aria-label="Instagram CindoLab" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://x.com/cindolab" aria-label="X (Twitter) Cindo Lab" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                    <a href="https://www.facebook.com/cindolab" aria-label="Facebook Cindo Lab" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-                </div>
-            </div>
-            <div class="disclaimer">
-                <h3 style="color: #333;">Penafian</h3>
-                <p style="color: #333;">Informasi yang tercantum di sini disediakan hanya untuk tujuan informasi dan diskusi dan tidak dimaksudkan sebagai rekomendasi untuk investasi saham berbasis bitcoin, layanan, produk, atau saran lain apa pun. Setiap peluang investasi dan/atau produk atau layanan yang ditampilkan di sini hanya akan diselesaikan sesuai dengan materi penawaran resmi yang berisi detail lengkap mengenai risiko smart contract, investasi minimum, biaya, dan pengeluaran dari transaksi tersebut.</p>
-                <p style="color: #333;">Setiap ketentuan setiap produk, layanan, atau peluang investasi saham berbasis bitcoin tertentu tercantum dalam dokumen konstituen yang berlaku dan mungkin berbeda secara material dari yang disajikan dalam presentasi ini.</p>
-                <p style="color: #333;">"Aset di platform" mengacu pada jumlah dana yang disalurkan oleh manajer investasi yang menggunakan perangkat lunak CindoLab, termasuk layanan administrasi dana saham berbasis bitcoin.</p>
-            </div>
-            <p style="color: #333;">© 2026 CindoLab. Semua hak dilindungi.</p>
-        </div>
-    </footer>
-
-    <!-- Modal for Investment Registration -->
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()" aria-label="Tutup modal">x</span>
-            <h2 id="modal-title">Daftar Investasi Saham Berbasis Bitcoin</h2>
-            <form id="investment-form">
-                <input type="text" name="name" placeholder="Nama Lengkap" required aria-required="true">
-                <input type="email" name="email" placeholder="Email" required aria-required="true">
-                <input type="tel" name="phone" placeholder="Nomor Telepon" pattern="[0-9]{10,12}" required aria-required="true">
-                <select name="package" required aria-required="true">
-                    <option value="" disabled selected>Pilih Paket Investasi</option>
-                    <option value="basic">Basic Package - Saham Bitcoin</option>
-                    <option value="premium">Premium Package - Smart Contract</option>
-                    <option value="elite">Elite Package - Tokenisasi Aset</option>
-                </select>
-                <button type="submit">Daftar Sekarang</button>
-            </form>
-        </div>
+    <div class="footer-info">
+        <p>© 2026 SSB arema.eth | Terinspirasi Arema FC | Dibangun dengan transparansi blockchain</p>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7TE5QuTbB2ID5rVfZq3VVvhxBF8880TRVKTHr/TqBsJNn3beZ1J9Mavm5Pd7jG+hr/E3f+Sbt9sN3EbrWwOCA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script> <!-- Tambah AOS JS -->
-    <script src="/script.js" defer></script>
-    <script defer>
-        // Wait for DOM and scripts to load
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof AOS !== 'undefined') {
-                AOS.init({
-                    duration: 800,
-                    once: true,
-                    easing: 'ease-in-out'
+    <script>
+        // JS sederhana: smooth scroll ke section kalau ada link anchor (opsional)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-            } else {
-                console.warn('AOS not loaded - animasi mungkin tidak jalan. Cek koneksi CDN.');
-            }
-            // Fallback smooth scroll kalau JS utama gagal
-            function scrollToSection(id) {
-                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            }
+            });
         });
     </script>
+
 </body>
 </html>
