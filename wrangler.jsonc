@@ -1,9 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "arema",                          // ← GANTI ini jadi nama EXACT project di dashboard Cloudflare (biasanya slug seperti "arema" atau "arema-abc123" – cek di Overview project)
-  "compatibility_date": "2026-01-12",
+  "name": "arema",                          // PASTIKAN ini EXACT sama dengan nama Worker di dashboard Cloudflare (biasanya lowercase, no spasi, cek di Overview)
+  "compatibility_date": "2026-01-12",       // Sudah bagus, atau update ke tanggal lebih baru kalau perlu fitur terbaru
   "assets": {
-    "directory": "./",                      // ← Pakai root repo karena index.html ada di sini (bukan di dist)
-    "not_found_handling": "single-page-application"   // Opsional: kalau nanti tambah routing client-side / SPA, ini berguna
+    "directory": "./",                      // Root repo → semua file di sini (index.html, style.css, images/, js/, dll) akan di-serve
+    "binding": "ASSETS",                    // Tambahkan ini (wajib kalau mau akses aset via env.ASSETS di script, meski pure static tetap direkomendasikan)
+    "not_found_handling": "single-page-application"  // Penting! Kalau request ke /about atau path lain tidak ada file, fallback ke index.html (cocok buat SPA atau routing JS)
   }
 }
